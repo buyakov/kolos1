@@ -11,8 +11,7 @@ class Form1(Form1Template):
   
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
-    uchastok = self.drop_down_1.items
-    uchastok = 2
+    uchastok = int(self.drop_down_1.selected_value)
     data = ((2, '43:40:032706:2', 877),
             (3, '43:40:032706:3', 635),
             (4, '43:40:032706:4', 649),
@@ -179,7 +178,9 @@ class Form1(Form1Template):
             (175, '43:40:052706:3', 1078),
             (176, '43:40:052706:2', 1123))
     num = list(filter(lambda x: x[0] == uchastok, data))[0][0]
+    kad = list(filter(lambda x: x[0] == uchastok, data))[0][1]
     sq = list(filter(lambda x: x[0] == uchastok, data))[0][2]
     link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЧЛ/ЦЕЛ ВЗНОС, УЧАСТОК №' + str(num) + '|Sum=' + str(sq*100+100000) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
     self.image_1.source = link
+    self.label_2.text = 'Участок № ' + str(num) + ',\n' + 'Кадастровый номер - ' + str(kad) + ',\nЧленский+целевой взнос - ' "{:.2f}".format((sq*100+100000)/100) + ' ₽'
     pass
