@@ -26,4 +26,9 @@ class Form1(Form1Template):
     
     self.label_2.text = 'Участок № ' + str(num) + ',\n' + 'Кадастровый номер - ' + str(cad) + ',\nЧленский+целевой взнос - ' "{:.2f}".format((sq*100+100000)/100) + ' ₽'
 
+    linkapi = 'https://pkk.rosreestr.ru/api/features/1/43:40:32706:' + str(num)
+    
+    response = anvil.http.request(linkapi, json=True)
+    print(response)
+
     pass
