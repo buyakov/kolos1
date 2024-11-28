@@ -11,9 +11,9 @@ import requests
 # them with @anvil.server.callable.
 # Here is an example - you can replace it with your own:
 
-@anvil.server.callable
-def reqapi(linkapi):
-  print(linkapi)
-  requests.get(linkapi, json=True)
-  return
+#@anvil.server.callable
+#def reqapi(linkapi):
+#  print(linkapi)
+#  requests.get(linkapi, json=True)
+#  return
 

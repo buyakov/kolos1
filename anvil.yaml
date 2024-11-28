@@ -19,6 +19,7 @@ package_name: ___________1_
 runtime_options:
   client_version: '3'
   server_spec: {base: python310-minimal}
+  server_spec_disabled: {base: python310-minimal, requirements: requests==2.32.3}
   server_version: python3-sandbox
   version: 2
 services:
