@@ -26,7 +26,8 @@ class Form1(Form1Template):
   
     linkapi = 'https://pkk.rosreestr.ru/api/features/1/43:40:32706:' + str(num)
 
-    response = anvil.http.request(linkapi, json=True)
+    response = anvil.server.call('reqapi', linkapi)
+    #response = anvil.http.request(linkapi, json=True)
     
     cn = response['feature']['attrs']['cn']
     cad_cost = response['feature']['attrs']['cad_cost']
