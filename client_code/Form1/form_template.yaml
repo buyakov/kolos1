@@ -3,15 +3,47 @@ components:
   layout_properties: {grid_position: 'CEZQWM,SWEDAS'}
   name: drop_down_2
   properties:
-    items: [Членский и целевой взнос, Электроэнергия, Прошлые периоды]
+    items: [Членский и целевой взнос, Электроэнергия, Прошлые периоды, Информация об участке]
     margin: [null, '20', null, '20']
   type: DropDown
+- components:
+  - event_bindings: {change: text_box_1_change}
+    layout_properties: {full_width_row: false, grid_position: 'ASRVIX,KBYMJP'}
+    name: text_box_1
+    properties:
+      align: left
+      enabled: true
+      italic: false
+      margin: [null, '0', null, '0']
+      placeholder: Предыдущие показания
+      spacing_below: small
+      type: number
+      underline: false
+      visible: true
+    type: TextBox
+  - event_bindings: {change: text_box_2_change}
+    layout_properties: {grid_position: 'OSUDGU,GQHQGM'}
+    name: text_box_2
+    properties: {placeholder: Текущие показания, type: number}
+    type: TextBox
+  - event_bindings: {change: text_box_3_change}
+    layout_properties: {grid_position: 'ZNARZN,QRJDQZ'}
+    name: text_box_3
+    properties: {placeholder: Сумма, type: number}
+    type: TextBox
+  layout_properties: {grid_position: 'QXSEPS,WNPBRF'}
+  name: column_panel_1
+  properties:
+    spacing:
+      margin: ['0', '20', '0', '20']
+      padding: [null, '0', null, '0']
+  type: ColumnPanel
 - layout_properties: {grid_position: 'YOPSCM,BCXRST'}
   name: label_1
   properties:
     spacing:
-      margin: [null, '20', null, '20']
-      padding: ['7', '10', '7', '10']
+      margin: ['5', '20', '5', '20']
+      padding: ['3', '10', '3', '10']
     text: Выберите номер участка
   type: Label
 - data_bindings: []
@@ -24,27 +56,6 @@ components:
     items: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70', '71', '72', '73', '74', '75', '76', '77', '78', '79', '80', '81', '82', '83', '84', '85', '86', '87', '88', '89', '90', '91', '92', '93', '94', '95', '96', '97', '98', '99', '100', '101', '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '112', '113', '114', '115', '116', '117', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127', '128', '129', '130', '131', '132', '133', '134', '135', '136', '137', '138', '139', '140', '141', '142', '143', '144', '145', '146', '147', '148', '149', '150', '151', '152', '153', '154', '155', '156', '157', '158', '159', '170', '171', '172', '173', '174', '175', '176']
     margin: [null, '20', null, '20']
   type: DropDown
-- components:
-  - event_bindings: {}
-    layout_properties: {full_width_row: false, grid_position: 'ASRVIX,KBYMJP'}
-    name: text_box_1
-    properties:
-      align: left
-      enabled: true
-      italic: false
-      margin: [null, '0', null, '0']
-      spacing_below: small
-      type: number
-      underline: false
-      visible: true
-    type: TextBox
-  layout_properties: {grid_position: 'YSGNWJ,BKPOQT'}
-  name: column_panel_1
-  properties:
-    spacing:
-      margin: [null, '20', null, '20']
-      padding: [null, '0', null, '0']
-  type: ColumnPanel
 - layout_properties: {grid_position: 'FILXAO,MUYAPC'}
   name: label_2
   properties:
@@ -58,9 +69,12 @@ components:
     margin: [null, '20', null, '20']
     spacing_above: small
   type: Image
-- layout_properties: {grid_position: 'YKVZRU,OROCFH'}
+- layout_properties: {grid_position: 'PYAHNP,IFJMCT'}
   name: label_3
-  properties: {}
+  properties:
+    spacing:
+      margin: [null, '20', null, '20']
+      padding: [null, '0', null, null]
   type: Label
 container: {type: ColumnPanel}
 is_package: true
