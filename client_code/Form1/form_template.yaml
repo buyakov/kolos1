@@ -76,5 +76,7 @@ components:
       margin: [null, '20', null, '20']
       padding: [null, '0', null, null]
   type: Label
-container: {type: ColumnPanel}
+container:
+  properties: {wrap_on: mobile}
+  type: ColumnPanel
 is_package: true
