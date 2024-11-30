@@ -14,6 +14,32 @@ db_schema:
       type: number
     server: full
     title: Table 1
+  table_2:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 131}
+      name: number
+      type: number
+    - admin_ui: {order: 1, width: 119}
+      name: cn
+      type: string
+    - admin_ui: {order: 2, width: 115}
+      name: area_value
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: address
+      type: string
+    - admin_ui: {order: 4, width: 200}
+      name: util_by_doc
+      type: string
+    - admin_ui: {order: 5, width: 200}
+      name: cad_cost
+      type: number
+    - admin_ui: {order: 6, width: 200}
+      name: cc_date_entering
+      type: string
+    server: full
+    title: Table 2
 name: СНТ "Колос-1"
 package_name: ___________1_
 runtime_options:

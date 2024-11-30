@@ -45,4 +45,13 @@ class Form1(Form1Template):
     #передаеем данные из Росреестра на страницу
     self.label_2.text = 'Участок № ' + str(num) + ',\n' + 'Кадастровый номер - ' + str(cad) + ',\nЧленский+целевой взнос - ' "{:.2f}".format((sq*100+100000)/100) + ' ₽' + '\n\nИнформация из Росреестра:\n' + 'Кадастровый номер - ' + str(cn) + ',\nКадастровая стоимость - ' "{:.2f}".format(cad_cost) + ' ₽\n' + 'Дата внесения сведений о кадастровой стоимости в ГКН - ' + str(cc_date_entering) + '\nАдрес - ' + str(address) + '\nТип использования - ' + str(util_by_doc) + '\nПлощадь - ' + str(area_value) + ' м²'
 
+    anvil.server.call('add_row', cn, cad_cost, address, util_by_doc, cc_date_entering, area_value)
+    
+#    row = app_tables.table_2.add_row(number = cn[13:],
+#                                    cadNo = cn,
+#                                    areaVol = area_value,
+#                                    address = address,
+#                                    util_by_doc = util_by_doc,
+#                                    cad_cost = cad_cost,
+#                                    cc_date_entering = cc_date_entering)
     pass
