@@ -11,11 +11,16 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
+    self.text_box_1.visible = False
+
     # Any code you write here will run before the form opens.
   
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
-    
+
+    if self.status == 'Электроэнергия':
+      print('Привет')
+      
     # присваиваем переменной num значение из drop_down
     num = int(self.drop_down_1.selected_value)
     
@@ -46,7 +51,7 @@ class Form1(Form1Template):
     self.label_2.text = 'Участок № ' + str(num) + ',\n' + 'Кадастровый номер - ' + str(cad) + ',\nЧленский+целевой взнос - ' "{:.2f}".format((sq*100+100000)/100) + ' ₽' + '\n\nИнформация из Росреестра:\n' + 'Кадастровый номер - ' + str(cn) + ',\nКадастровая стоимость - ' "{:.2f}".format(cad_cost) + ' ₽\n' + 'Дата внесения сведений о кадастровой стоимости в ГКН - ' + str(cc_date_entering) + '\nАдрес - ' + str(address) + '\nТип использования - ' + str(util_by_doc) + '\nПлощадь - ' + str(area_value) + ' м²'
 
     anvil.server.call('add_row', cn, cad_cost, address, util_by_doc, cc_date_entering, area_value)
-    
+
 #    row = app_tables.table_2.add_row(number = cn[13:],
 #                                    cadNo = cn,
 #                                    areaVol = area_value,
@@ -54,4 +59,17 @@ class Form1(Form1Template):
 #                                    util_by_doc = util_by_doc,
 #                                    cad_cost = cad_cost,
 #                                    cc_date_entering = cc_date_entering)
+    pass
+
+  def drop_down_2_change(self, **event_args):
+    """This method is called when an item is selected"""
+    
+    self.status = self.drop_down_2.selected_value
+
+    if self.status == 'Членский и целевой взнос' or self.status == 'Прошлые периоды':
+      self.text_box_1.visible = False
+    else:
+        self.text_box_1.visible = True
+
+    #return status
     pass
