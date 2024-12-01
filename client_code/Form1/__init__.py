@@ -5,6 +5,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 import anvil.http
+import anvil.js
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -15,6 +16,8 @@ class Form1(Form1Template):
     self.text_box_2.visible = False
     self.text_box_3.visible = False
     self.status = 'Членский и целевой взнос'
+    self.t1 = 0
+    self.t2 = 0
 
     # Any code you write here will run before the form opens.
   
@@ -37,13 +40,18 @@ class Form1(Form1Template):
     elif self.status == 'Электроэнергия':
       # расчитываем потребление электроэнергии
       consumption = self.t2 - self.t1
-      # собираем ссылку для генерации QR кода
-      link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЭЛЕКТРОЭНЕРГИЯ, УЧАСТОК №' + str(num) + ', Т1=' + str(self.t1) + ', Т2=' + str(self.t2) + '|Sum=' + str(consumption*4.5*100) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
-      # передаем информацию о платеже на страницу
-      self.label_2.text = 'Участок № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*4.5) + ' ₽'
-      # передаем изображение QR кода на страницу
-      self.image_1.source = link
-
+      if (self.text_box_1.text is not None) and (self.text_box_2.text is not None) and (consumption >= 0):
+        # собираем ссылку для генерации QR кода
+        link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЭЛЕКТРОЭНЕРГИЯ, УЧАСТОК №' + str(num) + ', Т1=' + str(self.t1) + ', Т2=' + str(self.t2) + '|Sum=' + str(consumption*4.5*100) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
+        # передаем информацию о платеже на страницу
+        self.label_2.text = 'Участок № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*4.5) + ' ₽'
+        # передаем изображение QR кода на страницу
+        self.image_1.source = link
+      else:
+        self.label_2.text = 'Корректно введите показания'
+        self.drop_down_1.selected_value = None
+        self.text_box_1.text = None
+        self.text_box_2.text = None
     elif self.status == 'Прошлые периоды':
       # собираем ссылку для генерации QR кода
       link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ПРОШЛЫЕ ПЕРИОДЫ, УЧАСТОК №' + str(num) + '|Sum=' + str(self.payment*100) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
@@ -83,6 +91,13 @@ class Form1(Form1Template):
 
   def drop_down_2_change(self, **event_args):
     """This method is called when an item is selected"""
+
+    #сбрасываем значения полей при смене статуса
+    self.label_2.text = None
+    self.text_box_1.text = None
+    self.text_box_2.text = None
+    self.text_box_3.text = None
+    self.image_1.source = None
     
     self.status = self.drop_down_2.selected_value
     self.drop_down_1.selected_value = None
@@ -129,3 +144,11 @@ class Form1(Form1Template):
       else:
           self.payment = int(self.text_box_3.text)
     pass
+
+    def __init__(self, **properties):
+      self.init_components(**properties)
+    
+      # Call the JavaScript function and pass the ID of the component
+      anvil.js.call_js('setNumericKeyboard', self.text_box_1)
+      anvil.js.call_js('setNumericKeyboard', self.text_box_2)
+      anvil.js.call_js('setNumericKeyboard', self.text_box_3)
