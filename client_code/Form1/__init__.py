@@ -77,7 +77,7 @@ class Form1(Form1Template):
         area_value = response['feature']['attrs']['area_value'] #площадь
 
         #передаеем данные из Росреестра на страницу
-        self.label_2.text = 'Участок № ' + str(num) + ',\n' + 'Кадастровый номер - ' + str(cad) + ',\nЧленский+целевой взнос - ' "{:.2f}".format((sq*100+100000)/100) + ' ₽' + '\n\nИнформация из Росреестра:\n' + 'Кадастровый номер - ' + str(cn) + ',\nКадастровая стоимость - ' "{:.2f}".format(cad_cost) + ' ₽\n' + 'Дата внесения сведений о кадастровой стоимости в ГКН - ' + str(cc_date_entering) + '\nАдрес - ' + str(address) + '\nТип использования - ' + str(util_by_doc) + '\nПлощадь - ' + str(area_value) + ' м²'
+        self.label_2.text = 'Участок № ' + str(num) + '\nИнформация из Росреестра:\n' + 'Кадастровый номер - ' + str(cn) + ',\nКадастровая стоимость - ' "{:.2f}".format(cad_cost) + ' ₽\n' + 'Дата внесения сведений о кадастровой стоимости в ГКН - ' + str(cc_date_entering) + '\nАдрес - ' + str(address) + '\nТип использования - ' + str(util_by_doc) + '\nПлощадь - ' + str(area_value) + ' м²'
 
         #запрос на сервер для добавления данных в таблицу
         anvil.server.call('add_row', cn, cad_cost, address, util_by_doc, cc_date_entering, area_value)
