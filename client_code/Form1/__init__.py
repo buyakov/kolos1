@@ -24,9 +24,9 @@ class Form1(Form1Template):
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
 
-    # присваиваем переменной num значение из drop_down
+    # исключаем выбор пустого значения номера участка
     if self.drop_down_1.selected_value is not None:
-
+      # присваиваем переменной num значение из drop_down
       num = int(self.drop_down_1.selected_value)
 
       if self.status == 'Членский и целевой взнос':
@@ -103,30 +103,54 @@ class Form1(Form1Template):
 
   def drop_down_2_change(self, **event_args):
     """This method is called when an item is selected"""
-
     #сбрасываем значения полей при смене статуса
     self.label_2.text = None
     self.text_box_1.text = None
     self.text_box_2.text = None
     self.text_box_3.text = None
     self.image_1.source = None
-    
+    #сохраняем в переменную значение статуса
     self.status = self.drop_down_2.selected_value
+    #сбрасываем поле выбора номера участка при смене статуса
     self.drop_down_1.selected_value = None
-
-    if self.status != 'Электроэнергия':
+    #устанавливаем видимость полей для статуса Членский и целевой взнос
+    if self.status == 'Членский и целевой взнос':
       self.text_box_1.visible = False
       self.text_box_2.visible = False
-    else:
-        self.text_box_1.visible = True
-        self.text_box_2.visible = True
-
-    if self.status != 'Прошлые периоды':
       self.text_box_3.visible = False
-    else:
-        self.text_box_3.visible = True
+      self.drop_down_1.visible = True
+      self.label_1.visible = True
+    #устанавливаем видимость полей для статуса Электроэнергия
+    if self.status == 'Электроэнергия':
+      self.text_box_1.visible = True
+      self.text_box_2.visible = True
+      self.text_box_3.visible = False
+      self.drop_down_1.visible = True
+      self.label_1.visible = True
+    #устанавливаем видимость полей для статуса Прошлые периоды
+    if self.status == 'Прошлые периоды':
+      self.text_box_1.visible = False
+      self.text_box_2.visible = False
+      self.text_box_3.visible = True
+      self.drop_down_1.visible = True
+      self.label_1.visible = True
+    #устанавливаем видимость полей для статуса Информация об участке
+    if self.status == 'Информация об участке':
+      self.text_box_1.visible = False
+      self.text_box_2.visible = False
+      self.text_box_3.visible = False
+      self.drop_down_1.visible = True
+      self.label_1.visible = True
+    #устанавливаем видимость полей для статуса Схема участков
+    if self.status == 'Схема участков':
+      self.text_box_1.visible = False
+      self.text_box_2.visible = False
+      self.text_box_3.visible = False
+      self.drop_down_1.visible = False
+      self.label_1.visible = False
+      link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
+      self.image_1.source = link
 
-    #return status
     pass
 
   def text_box_1_change(self, **event_args):
