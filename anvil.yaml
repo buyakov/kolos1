@@ -1,19 +1,5 @@
 allow_embedding: false
 db_schema:
-  data:
-    client: search
-    columns:
-    - admin_ui: {order: 0, width: 200}
-      name: number
-      type: number
-    - admin_ui: {order: 1, width: 200}
-      name: cadNo
-      type: string
-    - admin_ui: {order: 2, width: 200}
-      name: square
-      type: number
-    server: full
-    title: Table 1
   table_2:
     client: full
     columns:
@@ -43,6 +29,7 @@ db_schema:
       type: media
     server: full
     title: Table 2
+metadata: {description: Приложение для формирование QR кодов для оплаты услуг и взносов в СНТ "Колос-1", title: СНТ "Колос-1"}
 name: СНТ "Колос-1"
 native_deps:
   head_html: "<script>\n  function setNumericKeyboard(element) {\n    // Get the actual HTML input element\n    var inputElement = element.inputElement;\n    \n    // Set the desired attributes\n    inputElement.setAttribute('pattern', '[0-9]*');\n    inputElement.setAttribute('inputmode', 'numeric');\n  }\n</script>"
