@@ -86,7 +86,7 @@ class Form1(Form1Template):
 
         #передаеем данные об участке на страницу
         self.label_2.text = 'Участок № ' + str(num) + '\n\nИнформация из Росреестра:\n' + 'Кадастровый номер - ' + str(cn) + ',\nКадастровая стоимость - ' "{:.2f}".format(cad_cost) + ' ₽\n' + 'Дата внесения сведений о кадастровой стоимости в ГКН - ' + str(cc_date_entering) + '\nАдрес - ' + str(address) + '\nТип использования - ' + str(util_by_doc) + '\nПлощадь - ' + str(area_value) + ' м²'
-        self.image_1.visible = False
+        #self.image_1.visible = False
         self.image_2.source = [r['plan'] for r in app_tables.table_2.search(number=num)][0]
         
         #запрос на сервер для добавления данных в таблицу
@@ -98,6 +98,8 @@ class Form1(Form1Template):
       self.text_box_1.text = None
       self.text_box_2.text = None
       self.text_box_3.text = None
+      self.image_1.source = None
+      self.image_2.source = None
 
     pass
 
@@ -109,6 +111,7 @@ class Form1(Form1Template):
     self.text_box_2.text = None
     self.text_box_3.text = None
     self.image_1.source = None
+    self.image_2.source = None
     #сохраняем в переменную значение статуса
     self.status = self.drop_down_2.selected_value
     #сбрасываем поле выбора номера участка при смене статуса
