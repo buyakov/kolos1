@@ -38,6 +38,9 @@ db_schema:
     - admin_ui: {order: 6, width: 200}
       name: cc_date_entering
       type: string
+    - admin_ui: {order: 7, width: 277}
+      name: plan
+      type: media
     server: full
     title: Table 2
 name: СНТ "Колос-1"

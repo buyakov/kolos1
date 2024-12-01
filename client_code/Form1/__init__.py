@@ -63,24 +63,34 @@ class Form1(Form1Template):
         self.image_1.source = link
 
       else:
+        #собираем данные по участку из таблицы
+        cn = [r['cn'] for r in app_tables.table_2.search(number=num)][0]
+        area_value = [r['area_value'] for r in app_tables.table_2.search(number=num)][0]
+        address = [r['address'] for r in app_tables.table_2.search(number=num)][0]
+        util_by_doc = [r['util_by_doc'] for r in app_tables.table_2.search(number=num)][0]
+        cad_cost = [r['cad_cost'] for r in app_tables.table_2.search(number=num)][0]
+        cc_date_entering = [r['cc_date_entering'] for r in app_tables.table_2.search(number=num)][0]
+        
         # собираем ссылку для запроса информации из Росреестра
-        linkapi = 'https://pkk.rosreestr.ru/api/features/1/43:40:32706:' + str(num)
+        #linkapi = 'https://pkk.rosreestr.ru/api/features/1/43:40:32706:' + str(num)
         # делаем запрос на сайт Росреестра, работает через раз
-        response = anvil.http.request(linkapi, json=True)
+        #response = anvil.http.request(linkapi, json=True)
     
         # из json файла берем нужные данные
-        cn = response['feature']['attrs']['cn'] #кадастровый номер
-        cad_cost = response['feature']['attrs']['cad_cost'] #кадастровая стоимость
-        address = response['feature']['attrs']['address'] #адрес
-        util_by_doc = response['feature']['attrs']['util_by_doc'] #тип использования
-        cc_date_entering = response['feature']['attrs']['cc_date_entering'] #дата внесения сведений о кадастровой стоимости в ГКН
-        area_value = response['feature']['attrs']['area_value'] #площадь
+        #cn = response['feature']['attrs']['cn'] #кадастровый номер
+        #cad_cost = response['feature']['attrs']['cad_cost'] #кадастровая стоимость
+        #address = response['feature']['attrs']['address'] #адрес
+        #util_by_doc = response['feature']['attrs']['util_by_doc'] #тип использования
+        #cc_date_entering = response['feature']['attrs']['cc_date_entering'] #дата внесения сведений о кадастровой стоимости в ГКН
+        #area_value = response['feature']['attrs']['area_value'] #площадь
 
-        #передаеем данные из Росреестра на страницу
-        self.label_2.text = 'Участок № ' + str(num) + '\nИнформация из Росреестра:\n' + 'Кадастровый номер - ' + str(cn) + ',\nКадастровая стоимость - ' "{:.2f}".format(cad_cost) + ' ₽\n' + 'Дата внесения сведений о кадастровой стоимости в ГКН - ' + str(cc_date_entering) + '\nАдрес - ' + str(address) + '\nТип использования - ' + str(util_by_doc) + '\nПлощадь - ' + str(area_value) + ' м²'
-
+        #передаеем данные об участке на страницу
+        self.label_2.text = 'Участок № ' + str(num) + '\n\nИнформация из Росреестра:\n' + 'Кадастровый номер - ' + str(cn) + ',\nКадастровая стоимость - ' "{:.2f}".format(cad_cost) + ' ₽\n' + 'Дата внесения сведений о кадастровой стоимости в ГКН - ' + str(cc_date_entering) + '\nАдрес - ' + str(address) + '\nТип использования - ' + str(util_by_doc) + '\nПлощадь - ' + str(area_value) + ' м²'
+        self.image_1.visible = False
+        self.image_2.source = [r['plan'] for r in app_tables.table_2.search(number=num)][0]
+        
         #запрос на сервер для добавления данных в таблицу
-        anvil.server.call('add_row', cn, cad_cost, address, util_by_doc, cc_date_entering, area_value)
+        #anvil.server.call('add_row', cn, cad_cost, address, util_by_doc, cc_date_entering, area_value)
 
     else:
       self.image_1.source = None
@@ -88,13 +98,7 @@ class Form1(Form1Template):
       self.text_box_1.text = None
       self.text_box_2.text = None
       self.text_box_3.text = None
-  #    row = app_tables.table_2.add_row(number = cn[13:],
-  #                                    cadNo = cn,
-  #                                    areaVol = area_value,
-  #                                    address = address,
-  #                                    util_by_doc = util_by_doc,
-  #                                    cad_cost = cad_cost,
-  #                                    cc_date_entering = cc_date_entering)
+
     pass
 
   def drop_down_2_change(self, **event_args):
