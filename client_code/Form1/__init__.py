@@ -5,7 +5,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 import anvil.http
-import anvil.js
+#import anvil.js
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -228,11 +228,3 @@ class Form1(Form1Template):
       else:
           self.payment = int(self.text_box_3.text)
     pass
-
-#    def __init__(self, **properties):
-#      self.init_components(**properties)
-    
-      # Call the JavaScript function and pass the ID of the component
-#      anvil.js.call_js('setNumericKeyboard', self.text_box_1)
-#      anvil.js.call_js('setNumericKeyboard', self.text_box_2)
-#      anvil.js.call_js('setNumericKeyboard', self.text_box_3)

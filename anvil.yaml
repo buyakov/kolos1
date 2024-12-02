@@ -31,8 +31,7 @@ db_schema:
     title: Table 2
 metadata: {description: Приложение для формирование QR кодов на оплату услуг и взносов в СНТ "Колос-1", title: СНТ "Колос-1"}
 name: СНТ "Колос-1"
-native_deps:
-  head_html: "<script>\n  function setNumericKeyboard(element) {\n    // Get the actual HTML input element\n    var inputElement = element.inputElement;\n    \n    // Set the desired attributes\n    inputElement.setAttribute('pattern', '[0-9]*');\n    inputElement.setAttribute('inputmode', 'numeric');\n  }\n</script>"
+native_deps: {head_html: ''}
 package_name: ___________1_
 runtime_options:
   client_version: '3'
