@@ -1,7 +1,7 @@
 allow_embedding: false
 db_schema:
   table_2:
-    client: full
+    client: search
     columns:
     - admin_ui: {order: 0, width: 131}
       name: number

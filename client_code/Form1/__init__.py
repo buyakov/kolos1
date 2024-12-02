@@ -15,6 +15,7 @@ class Form1(Form1Template):
     self.text_box_1.visible = False
     self.text_box_2.visible = False
     self.text_box_3.visible = False
+    self.rich_text_1.visible= False
     self.status = 'Членский и целевой взнос'
     self.t1 = 0
     self.t2 = 0
@@ -134,6 +135,8 @@ class Form1(Form1Template):
       self.text_box_3.visible = False
       self.drop_down_1.visible = True
       self.label_1.visible = True
+      self.label_2.visible = True
+      self.rich_text_1.visible= False
     #устанавливаем видимость полей для статуса Электроэнергия
     if self.status == 'Электроэнергия':
       self.text_box_1.visible = True
@@ -141,6 +144,8 @@ class Form1(Form1Template):
       self.text_box_3.visible = False
       self.drop_down_1.visible = True
       self.label_1.visible = True
+      self.label_2.visible = True
+      self.rich_text_1.visible= False
     #устанавливаем видимость полей для статуса Прошлые периоды
     if self.status == 'Прошлые периоды':
       self.text_box_1.visible = False
@@ -148,6 +153,8 @@ class Form1(Form1Template):
       self.text_box_3.visible = True
       self.drop_down_1.visible = True
       self.label_1.visible = True
+      self.label_2.visible = True
+      self.rich_text_1.visible= False
     #устанавливаем видимость полей для статуса Информация об участке
     if self.status == 'Информация об участке':
       self.text_box_1.visible = False
@@ -155,6 +162,8 @@ class Form1(Form1Template):
       self.text_box_3.visible = False
       self.drop_down_1.visible = True
       self.label_1.visible = True
+      self.label_2.visible = True
+      self.rich_text_1.visible= False
     #устанавливаем видимость полей для статуса Схема участков
     if self.status == 'Схема участков':
       self.image_1.visible = True
@@ -163,10 +172,22 @@ class Form1(Form1Template):
       self.text_box_3.visible = False
       self.drop_down_1.visible = False
       self.label_1.visible = False
+      self.rich_text_1.visible= False
       link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
       self.image_1.source = link
       self.image_2.visible = False
-
+      
+    if self.status == 'Контакты и реквизиты':
+      self.text_box_1.visible = False
+      self.text_box_2.visible = False
+      self.text_box_3.visible = False
+      self.label_1.visible = False
+      self.label_2.visible = False
+      self.drop_down_1.visible = False
+      self.label_1.visible = False
+      self.image_1.visible = False
+      self.image_2.visible = False
+      self.rich_text_1.visible = True
     pass
 
   def text_box_1_change(self, **event_args):

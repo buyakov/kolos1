@@ -15,7 +15,7 @@ components:
   layout_properties: {grid_position: 'CEZQWM,SWEDAS'}
   name: drop_down_2
   properties:
-    items: [Членский и целевой взнос, Электроэнергия, Прошлые периоды, Информация об участке, Схема участков]
+    items: [Членский и целевой взнос, Электроэнергия, Прошлые периоды, Информация об участке, Схема участков, Контакты и реквизиты]
     margin: [null, '20', null, '20']
   type: DropDown
 - components:
@@ -89,6 +89,15 @@ components:
     height: '200'
     margin: [null, '20', null, '20']
   type: Image
+- layout_properties: {grid_position: 'CFGFZZ,VIOGWO'}
+  name: rich_text_1
+  properties:
+    content: "**Контакты:**\n**Председатель:**\nГладышева Ольга Михайловна\n+79229176134\n**Казначей:** +79097170264\n**Электрик:** +79229039121\n\n**Реквизиты:**\n**Полное наименование организации:** \nНекоммерческое садоводческое товарищество \"Колос-1\"\n**ИНН/КПП** \n4346026874/434501001\n**Юридический адрес организации:** \n610912, Киров г, Дороничи п\n**Наименование банка:** \nАО КБ \"ХЛЫНОВ\", г. Киров\n**БИК:** 043304711\n**Расчетный счет:** \n40703810400130000655\n**Корреспондентский счет:** \n30101810100000000711"
+    format: markdown
+    spacing:
+      margin: [null, '20', null, '20']
+      padding: [null, '10', null, '10']
+  type: RichText
 container:
   properties: {wrap_on: mobile}
   type: ColumnPanel
