@@ -59,6 +59,7 @@ class Form1(Form1Template):
           self.drop_down_1.selected_value = None
           self.text_box_1.text = None
           self.text_box_2.text = None
+          self.image_1.source = None
       elif self.status == 'Прошлые периоды':
         self.image_1.visible = True
         if self.text_box_3.text is not None:
@@ -73,6 +74,7 @@ class Form1(Form1Template):
           self.label_2.text = 'Введите сумму'
           self.drop_down_1.selected_value = None
           self.text_box_3.text = None
+          self.image_1.source = None
       else:
         #собираем данные по участку из таблицы
         self.image_2.visible = True
