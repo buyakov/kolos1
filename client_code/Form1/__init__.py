@@ -176,7 +176,7 @@ class Form1(Form1Template):
       link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
       self.image_1.source = link
       self.image_2.visible = False
-      
+    #устанавливаем видимость полей для статуса Контакты и реквизиты
     if self.status == 'Контакты и реквизиты':
       self.text_box_1.visible = False
       self.text_box_2.visible = False
