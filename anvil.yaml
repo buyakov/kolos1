@@ -27,6 +27,15 @@ db_schema:
     - admin_ui: {order: 7, width: 277}
       name: plan
       type: media
+    - admin_ui: {order: 8, width: 200}
+      name: right_type
+      type: string
+    - admin_ui: {order: 9, width: 200}
+      name: right_number
+      type: string
+    - admin_ui: {order: 10, width: 200}
+      name: right_reg_date
+      type: string
     server: full
     title: Table 2
 metadata: {description: Приложение для формирование QR кодов на оплату услуг и взносов в СНТ "Колос-1", title: СНТ "Колос-1"}
