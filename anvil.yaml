@@ -40,7 +40,9 @@ db_schema:
     title: Table 2
 metadata: {description: Приложение для формирование QR кодов на оплату услуг и взносов в СНТ "Колос-1", title: СНТ "Колос-1"}
 name: СНТ "Колос-1"
-native_deps: {head_html: ''}
+native_deps:
+  head_html: |
+    <meta name="yandex-verification" content="0010e4ff3b9367b7" />
 package_name: ___________1_
 runtime_options:
   client_version: '3'
