@@ -5,7 +5,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 import anvil.http
-#import anvil.js
+import segno
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -35,11 +35,16 @@ class Form1(Form1Template):
         area_value = [r['area_value'] for r in app_tables.table_2.search(number=num)][0]
         # собираем ссылку для генерации QR кода
         link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЧЛ/ЦЕЛ ВЗНОС, УЧАСТОК №' + str(num) + '|Sum=' + str(area_value*100+100000) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
+
+        data = 'ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЧЛ/ЦЕЛ ВЗНОС, УЧАСТОК №' + str(num) + '|Sum=' + str(area_value*100+100000)
+        qrcode = segno.make(data,mode="byte",error='L')
+        img = qrcode.to_pil(scale=4,border=0)
+
         # передаем информацию о платеже на страницу
         self.label_2.text = 'Участок № ' + str(num) + '\nЧленский взнос - ' + str(area_value) + ' ₽' + '\nЦелевой взнос - ' + str(1000) + ' ₽' + '\nСумма к оплате - ' + str(area_value+1000) + ' ₽'
         # передаем изображение QR кода на страницу
         self.image_1.source = link
-
+        
       elif self.status == 'Электроэнергия':
         # расчитываем потребление электроэнергии
         consumption = self.t2 - self.t1
