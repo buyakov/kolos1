@@ -11,8 +11,8 @@ import segno
 # them with @anvil.server.callable.
 # Here is an example - you can replace it with your own:
 
-@anvil.server.callable
-def qr_gen(data):
-  qrcode = segno.make(data,mode="byte",error='L')
-  #img = qrcode.to_pil(scale=4,border=0)
-  return qrcode
+#@anvil.server.callable
+#def qr_gen(data):
+#  qrcode = segno.make(data,mode="byte",error='L')
+#  img = qrcode.to_pil(scale=4,border=0)
+#  return img
