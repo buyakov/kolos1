@@ -5,6 +5,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 import anvil.http
+import anvil.media
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -226,4 +227,9 @@ class Form1(Form1Template):
         self.text_box_3.text = None
       else:
           self.payment = int(self.text_box_3.text)
+    pass
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.media.download(self.image_1.source)
     pass
