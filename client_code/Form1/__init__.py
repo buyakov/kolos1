@@ -7,6 +7,9 @@ import anvil.server
 import anvil.http
 import anvil.media
 
+from anvil.js.window import jQuery
+from anvil.js import get_dom_node
+
 class Form1(Form1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -16,10 +19,17 @@ class Form1(Form1Template):
     self.text_box_3.visible = False
     self.image_2.visible = False
     self.rich_text_1.visible= False
+    self.linear_panel_1.visible = False
     self.status = 'Членский и целевой взнос'
     self.t1 = 0
     self.t2 = 0
 
+    # Create an iframe element and set the src
+    iframe = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
+
+    # Append the iframe to a container in our form
+    iframe.appendTo(get_dom_node(self.linear_panel_1))
+  
     # Any code you write here will run before the form opens.
 
   def drop_down_1_change(self, **event_args):
@@ -179,6 +189,7 @@ class Form1(Form1Template):
       self.image_1.visible = True
       self.image_2.visible = False
       self.rich_text_1.visible= False
+      self.linear_panel_1.visible = True
       link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
       self.image_1.source = link
     #устанавливаем видимость полей для статуса Контакты и реквизиты
