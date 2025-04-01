@@ -20,16 +20,18 @@ class Form1(Form1Template):
     self.image_2.visible = False
     self.rich_text_1.visible= False
     self.linear_panel_1.visible = False
+    self.linear_panel_2.visible = False
+    self.grid_panel_1.visible = False
     self.status = 'Членский и целевой взнос'
     self.t1 = 0
     self.t2 = 0
 
     # Create an iframe element and set the src
-    iframe = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
-
+    iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
+    iframe_google = jQuery("<iframe width='100%' height='400'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
     # Append the iframe to a container in our form
-    iframe.appendTo(get_dom_node(self.linear_panel_1))
-  
+    iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
+    iframe_google.appendTo(get_dom_node(self.linear_panel_2))
     # Any code you write here will run before the form opens.
 
   def drop_down_1_change(self, **event_args):
@@ -114,6 +116,7 @@ class Form1(Form1Template):
       self.label_2.text = None
       self.image_1.source = None
       self.image_2.source = None
+      self.image_3.source = None
       self.rich_text_1.content = None
     pass
 
@@ -126,6 +129,7 @@ class Form1(Form1Template):
     self.label_2.text = None
     self.image_1.source = None
     self.image_2.source = None
+    self.image_3.source = None
     self.drop_down_1.selected_value = None
     #сохраняем в переменную значение статуса
     self.status = self.drop_down_2.selected_value
@@ -140,7 +144,11 @@ class Form1(Form1Template):
       self.drop_down_2.visible = True
       self.image_1.visible = True
       self.image_2.visible = False
-      self.rich_text_1.visible= False
+      self.image_3.visible = False
+      self.rich_text_1.visible = False
+      self.grid_panel_1.visible = False
+      self.linear_panel_1.visible = False
+      self.linear_panel_2.visible = False
     #устанавливаем видимость полей для статуса Электроэнергия
     if self.status == 'Электроэнергия':
       self.text_box_1.visible = True
@@ -152,7 +160,11 @@ class Form1(Form1Template):
       self.drop_down_2.visible = True
       self.image_1.visible = True
       self.image_2.visible = False
+      self.image_2.visible = False
       self.rich_text_1.visible= False
+      self.grid_panel_1.visible = False
+      self.linear_panel_1.visible = False
+      self.linear_panel_2.visible = False
     #устанавливаем видимость полей для статуса Прошлые периоды
     if self.status == 'Прошлые периоды':
       self.text_box_1.visible = False
@@ -164,7 +176,11 @@ class Form1(Form1Template):
       self.drop_down_2.visible = True
       self.image_1.visible = True
       self.image_2.visible = False
+      self.image_3.visible = False
       self.rich_text_1.visible= False
+      self.grid_panel_1.visible = False
+      self.linear_panel_1.visible = False
+      self.linear_panel_2.visible = False
     #устанавливаем видимость полей для статуса Информация об участке
     if self.status == 'Информация об участке':
       self.text_box_1.visible = False
@@ -176,7 +192,11 @@ class Form1(Form1Template):
       self.drop_down_2.visible = True
       self.image_1.visible = False
       self.image_2.visible = True
+      self.image_3.visible = False
       self.rich_text_1.visible= False
+      self.grid_panel_1.visible = False
+      self.linear_panel_1.visible = False
+      self.linear_panel_2.visible = False
     #устанавливаем видимость полей для статуса Схема участков
     if self.status == 'Схема участков':
       self.text_box_1.visible = False
@@ -186,12 +206,15 @@ class Form1(Form1Template):
       self.label_2.visible = False
       self.drop_down_1.visible = False
       self.drop_down_2.visible = True
-      self.image_1.visible = True
+      self.image_1.visible = False
       self.image_2.visible = False
+      self.image_3.visible = False
       self.rich_text_1.visible= False
       self.linear_panel_1.visible = True
-      link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
-      self.image_1.source = link
+      self.linear_panel_2.visible = False
+      self.grid_panel_1.visible = True
+      #link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
+      #self.image_1.source = link
     #устанавливаем видимость полей для статуса Контакты и реквизиты
     if self.status == 'Контакты и реквизиты':
       self.text_box_1.visible = False
@@ -203,7 +226,11 @@ class Form1(Form1Template):
       self.drop_down_2.visible = True
       self.image_1.visible = False
       self.image_2.visible = False
+      self.image_3.visible = False
       self.rich_text_1.visible = True
+      self.grid_panel_1.visible = False
+      self.linear_panel_1.visible = False
+      self.linear_panel_2.visible = False
     pass
 
   #запись переменной t1 из поля Предыдущие показания
@@ -238,4 +265,27 @@ class Form1(Form1Template):
         self.text_box_3.text = None
       else:
           self.payment = int(self.text_box_3.text)
+    pass
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.image_3.visible = False
+    self.linear_panel_1.visible = True
+    self.linear_panel_2.visible = False
+    pass
+
+  def button_2_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.image_3.visible = False
+    self.linear_panel_1.visible = False
+    self.linear_panel_2.visible = True
+    pass
+
+  def button_3_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.image_3.visible = True
+    self.linear_panel_1.visible = False
+    self.linear_panel_2.visible = False
+    link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
+    self.image_3.source = link
     pass
