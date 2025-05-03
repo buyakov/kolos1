@@ -15,7 +15,7 @@ components:
   layout_properties: {grid_position: 'CEZQWM,SWEDAS'}
   name: drop_down_2
   properties:
-    items: [Членский и целевой взнос, Электроэнергия, Прошлые периоды, Информация об участке, Схема участков, Контакты и реквизиты]
+    items: [Членский взнос, Электроэнергия, Прошлые периоды, Информация об участке, Схема участков, Контакты и реквизиты]
     margin: [null, '20', null, '20']
   type: DropDown
 - components:

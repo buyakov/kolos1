@@ -42,13 +42,15 @@ class Form1(Form1Template):
       # присваиваем переменной num значение из drop_down
       num = int(self.drop_down_1.selected_value)
 
-      if self.status == 'Членский и целевой взнос':
+      if self.status == 'Членский взнос':
         # получаем площадь участка из таблицы
         area_value = [r['area_value'] for r in app_tables.table_2.search(number=num)][0]
         # собираем ссылку для генерации QR кода
-        link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЧЛ/ЦЕЛ ВЗНОС, УЧАСТОК №' + str(num) + '|Sum=' + str(area_value*100+100000) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
+        # link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЧЛ/ЦЕЛ ВЗНОС, УЧАСТОК №' + str(num) + '|Sum=' + str(area_value*100+100000) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
+        link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЧЛ/ЦЕЛ ВЗНОС, УЧАСТОК №' + str(num) + '|Sum=' + str(area_value*5) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
         # передаем информацию о платеже на страницу
-        self.label_2.text = 'Участок № ' + str(num) + '\nЧленский взнос - ' + str(area_value) + ' ₽' + '\nЦелевой взнос - ' + str(1000) + ' ₽' + '\nСумма к оплате - ' + str(area_value+1000) + ' ₽'
+        # self.label_2.text = 'Участок № ' + str(num) + '\nЧленский взнос - ' + str(area_value) + ' ₽' + '\nЦелевой взнос - ' + str(1000) + ' ₽' + '\nСумма к оплате - ' + str(area_value+1000) + ' ₽'
+        self.label_2.text = 'Участок № ' + str(num) + '\nЧленский взнос - ' + str(area_value) + ' ₽' + '\nСумма к оплате - ' + str(area_value*5) + ' ₽'
         # передаем изображение QR кода на страницу
         self.image_1.source = link
         
