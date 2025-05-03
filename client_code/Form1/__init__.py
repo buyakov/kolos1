@@ -22,7 +22,7 @@ class Form1(Form1Template):
     self.linear_panel_1.visible = False
     self.linear_panel_2.visible = False
     self.grid_panel_1.visible = False
-    self.status = 'Членский и целевой взнос'
+    self.status = 'Членский взнос'
     self.t1 = 0
     self.t2 = 0
 
@@ -42,13 +42,13 @@ class Form1(Form1Template):
       # присваиваем переменной num значение из drop_down
       num = int(self.drop_down_1.selected_value)
 
-      if self.status == 'Членский и целевой взнос':
+      if self.status == 'Членский взнос':
         # получаем площадь участка из таблицы
         area_value = [r['area_value'] for r in app_tables.table_2.search(number=num)][0]
         # собираем ссылку для генерации QR кода
         link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЧЛ ВЗНОС, УЧАСТОК №' + str(num) + '|Sum=' + str(area_value*500) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
         # передаем информацию о платеже на страницу
-        self.label_2.text = 'Участок № ' + str(num) + '\nЧленский взнос - ' + str(area_value*5) + ' ₽' + '\nСумма к оплате - ' + str(area_value*5) + ' ₽'
+        self.label_2.text = 'Участок № ' + str(num) + '\nСумма к оплате - ' + str(area_value*5) + ' ₽'
         # передаем изображение QR кода на страницу
         self.image_1.source = link
         
@@ -134,7 +134,7 @@ class Form1(Form1Template):
     #сохраняем в переменную значение статуса
     self.status = self.drop_down_2.selected_value
     #устанавливаем видимость полей для статуса Членский и целевой взнос
-    if self.status == 'Членский и целевой взнос':
+    if self.status == 'Членский взнос':
       self.text_box_1.visible = False
       self.text_box_2.visible = False
       self.text_box_3.visible = False
