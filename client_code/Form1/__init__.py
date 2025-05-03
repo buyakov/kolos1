@@ -3,12 +3,12 @@ from anvil import *
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-import anvil.server
+# import anvil.server
 import anvil.http
-import anvil.media
+# import anvil.media
 
-# from anvil.js.window import jQuery
-# from anvil.js import get_dom_node
+from anvil.js.window import jQuery
+from anvil.js import get_dom_node
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -25,14 +25,6 @@ class Form1(Form1Template):
     self.status = 'Членский взнос'
     self.t1 = 0
     self.t2 = 0
-
-    # Create an iframe element and set the src
-    # iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
-    # iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
-    # Append the iframe to a container in our form
-    # iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
-    # iframe_google.appendTo(get_dom_node(self.linear_panel_2))
-    # Any code you write here will run before the form opens.
 
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
@@ -215,6 +207,16 @@ class Form1(Form1Template):
       self.grid_panel_1.visible = True
       #link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
       #self.image_1.source = link
+      # Создаем элемент iframe
+      iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
+      iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
+      # добавляем iframe в контейнер на форме
+      iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
+      iframe_google.appendTo(get_dom_node(self.linear_panel_2))
+      # сохраняем в перменную изображение по ссылке
+      link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
+      # добавляем изображение в контейнер на форме
+      self.image_3.source = link
     #устанавливаем видимость полей для статуса Контакты и реквизиты
     if self.status == 'Контакты и реквизиты':
       self.text_box_1.visible = False
@@ -286,6 +288,6 @@ class Form1(Form1Template):
     self.image_3.visible = True
     self.linear_panel_1.visible = False
     self.linear_panel_2.visible = False
-    link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
-    self.image_3.source = link
+    # link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
+    # self.image_3.source = link
     pass
