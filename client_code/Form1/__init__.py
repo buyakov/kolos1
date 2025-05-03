@@ -7,8 +7,8 @@ import anvil.server
 import anvil.http
 import anvil.media
 
-from anvil.js.window import jQuery
-from anvil.js import get_dom_node
+# from anvil.js.window import jQuery
+# from anvil.js import get_dom_node
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -27,11 +27,11 @@ class Form1(Form1Template):
     self.t2 = 0
 
     # Create an iframe element and set the src
-    iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
-    iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
+    # iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
+    # iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
     # Append the iframe to a container in our form
-    iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
-    iframe_google.appendTo(get_dom_node(self.linear_panel_2))
+    # iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
+    # iframe_google.appendTo(get_dom_node(self.linear_panel_2))
     # Any code you write here will run before the form opens.
 
   def drop_down_1_change(self, **event_args):
