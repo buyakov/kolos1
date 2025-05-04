@@ -27,11 +27,11 @@ class Form1(Form1Template):
     self.t2 = 0
 
     # Создаем элемент iframe
-    iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
-    iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
+    #iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
+    #iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
     # добавляем iframe в контейнер на форме
-    iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
-    iframe_google.appendTo(get_dom_node(self.linear_panel_2))
+    #iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
+    #iframe_google.appendTo(get_dom_node(self.linear_panel_2))
   
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
@@ -274,6 +274,13 @@ class Form1(Form1Template):
     self.image_3.visible = False
     self.linear_panel_1.visible = True
     self.linear_panel_2.visible = False
+    # Создаем элемент iframe
+    iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
+    #iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
+    # добавляем iframe в контейнер на форме
+    iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
+    anvil.js.get_dome_node(self.linear_panel_1).remove()
+    #iframe_google.appendTo(get_dom_node(self.linear_panel_2))
     pass
 
   def button_2_click(self, **event_args):
