@@ -212,8 +212,8 @@ class Form1(Form1Template):
       link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
       # добавляем изображение в контейнер на форме
       self.image_3.source = link
-    #устанавливаем видимость полей для статуса Контакты и реквизиты
-    if self.status == 'Контакты и реквизиты':
+    #устанавливаем видимость полей для статуса Общая информация
+    if self.status == 'Общая информация':
       self.text_box_1.visible = False
       self.text_box_2.visible = False
       self.text_box_3.visible = False
