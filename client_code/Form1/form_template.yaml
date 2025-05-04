@@ -26,7 +26,7 @@ components:
       align: right
       spacing:
         padding: [null, '5', null, '5']
-      text: Яндекс
+      text: Схема
     type: Button
   - event_bindings: {click: button_2_click}
     layout_properties: {col_xs: 4, row: SFEQSC, width_xs: 4}
@@ -43,7 +43,7 @@ components:
       align: left
       spacing:
         padding: [null, '5', null, '5']
-      text: Схема
+      text: Яндекс
     type: Button
   data_bindings: []
   layout_properties: {grid_position: 'GVJQSP,RROAYS'}

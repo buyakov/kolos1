@@ -25,13 +25,8 @@ class Form1(Form1Template):
     self.status = 'Членский взнос'
     self.t1 = 0
     self.t2 = 0
-
-    # Создаем элемент iframe
-    #iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
-    #iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
-    # добавляем iframe в контейнер на форме
-    #iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
-    #iframe_google.appendTo(get_dom_node(self.linear_panel_2))
+    self.yandex_click = 0
+    self.google_click = 0
   
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
@@ -208,9 +203,9 @@ class Form1(Form1Template):
       self.drop_down_2.visible = True
       self.image_1.visible = False
       self.image_2.visible = False
-      self.image_3.visible = False
+      self.image_3.visible = True
       self.rich_text_1.visible= False
-      self.linear_panel_1.visible = True
+      self.linear_panel_1.visible = False
       self.linear_panel_2.visible = False
       self.grid_panel_1.visible = True
       # сохраняем в перменную изображение по ссылке
@@ -269,18 +264,17 @@ class Form1(Form1Template):
           self.payment = int(self.text_box_3.text)
     pass
 
-  def button_1_click(self, **event_args):
+  def button_3_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.image_3.visible = False
     self.linear_panel_1.visible = True
     self.linear_panel_2.visible = False
-    # Создаем элемент iframe
-    iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
-    #iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
-    # добавляем iframe в контейнер на форме
-    iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
-    anvil.js.get_dome_node(self.linear_panel_1).remove()
-    #iframe_google.appendTo(get_dom_node(self.linear_panel_2))
+    self.yandex_click += 1
+    if self.yandex_click < 2:
+      # Создаем элемент iframe
+      iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
+      # добавляем iframe в контейнер на форме
+      iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
     pass
 
   def button_2_click(self, **event_args):
@@ -288,9 +282,15 @@ class Form1(Form1Template):
     self.image_3.visible = False
     self.linear_panel_1.visible = False
     self.linear_panel_2.visible = True
+    self.google_click += 1
+    if self.google_click < 2:
+      # Создаем элемент iframe
+      iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
+      # добавляем iframe в контейнер на форме
+      iframe_google.appendTo(get_dom_node(self.linear_panel_2))
     pass
 
-  def button_3_click(self, **event_args):
+  def button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.image_3.visible = True
     self.linear_panel_1.visible = False
