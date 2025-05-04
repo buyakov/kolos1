@@ -25,6 +25,13 @@ class Form1(Form1Template):
     self.status = 'Членский взнос'
     self.t1 = 0
     self.t2 = 0
+
+    # Создаем элемент iframe
+    iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
+    iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
+    # добавляем iframe в контейнер на форме
+    iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
+    iframe_google.appendTo(get_dom_node(self.linear_panel_2))
   
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
@@ -123,6 +130,7 @@ class Form1(Form1Template):
     self.image_2.source = None
     self.image_3.source = None
     self.drop_down_1.selected_value = None
+    #anvil.js.get_dom_node(self.linear_panel_1).remove()
     #сохраняем в переменную значение статуса
     self.status = self.drop_down_2.selected_value
     #устанавливаем видимость полей для статуса Членский и целевой взнос
@@ -191,8 +199,6 @@ class Form1(Form1Template):
       self.linear_panel_2.visible = False
     #устанавливаем видимость полей для статуса Схема участков
     if self.status == 'Схема участков':
-      #anvil.js.get_dom_node(self.linear_panel_1).remove()
-      #self.linear_panel_2.remove_from_parent()
       self.text_box_1.visible = False
       self.text_box_2.visible = False
       self.text_box_3.visible = False
@@ -207,18 +213,10 @@ class Form1(Form1Template):
       self.linear_panel_1.visible = True
       self.linear_panel_2.visible = False
       self.grid_panel_1.visible = True
-      # Создаем элемент iframe
-      iframe_yandex = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://yandex.ru/map-widget/v1/?um=constructor%3A8c78e07a751d5a9e657860e397d28e92a92ff8ebc0fb8a8ba7be72ea7417b931&amp;source=constructor")
-      iframe_google = jQuery("<iframe width='100%' height='400' frameborder='0'>").attr("src","https://www.google.com/maps/d/embed?mid=1Va23cJVcImyNFZfrASGqnYF-aqVdHzQ&ehbc=2E312F&noprof=1")
-      # добавляем iframe в контейнер на форме
-      iframe_yandex.appendTo(get_dom_node(self.linear_panel_1))
-      iframe_google.appendTo(get_dom_node(self.linear_panel_2))
       # сохраняем в перменную изображение по ссылке
       link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
       # добавляем изображение в контейнер на форме
       self.image_3.source = link
-      components = self.linear_panel_1.get_components()
-      print(f"{len(components)} components")
     #устанавливаем видимость полей для статуса Контакты и реквизиты
     if self.status == 'Контакты и реквизиты':
       self.text_box_1.visible = False
