@@ -1,11 +1,12 @@
 from ._anvil_designer import Form1Template
-# from anvil import *
+from anvil import *
 # import anvil.tables as tables
 # import anvil.tables.query as q
 from anvil.tables import app_tables
 # import anvil.server
 import anvil.http
 # import anvil.media
+import requests
 
 from anvil.js.window import jQuery
 from anvil.js import get_dom_node
@@ -27,6 +28,20 @@ class Form1(Form1Template):
     self.t2 = 0
     self.yandex_click = 0
     self.google_click = 0
+
+  # формируем запрос
+  url = 'https://api.openweathermap.org/data/2.5/weather?q=Киров&units=metric&lang=ru&appid=79d1ca96933b0328e1c7e3e7a26cb347'
+  # отправляем запрос на сервер и сразу получаем результат
+  #weather_data = requests.get(url).json()
+  weather_data = anvil.http.request(url, json=True)
+  # получаем данные о температуре и о том, как она ощущается
+  temperature = round(weather_data['main']['temp'])
+  description = weather_data['weather'][0]['description']
+  temperature_feels = round(weather_data['main']['feels_like'])
+  # выводим значения на экран
+  print('Сейчас в городе', city, str(temperature), '°C')
+  print('Ощущается как', str(temperature_feels), '°C')
+  print(description)
   
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
