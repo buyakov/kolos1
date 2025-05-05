@@ -8,12 +8,9 @@ import anvil.http
 # import anvil.media
 # import requests
 
+
 from anvil.js.window import jQuery
 from anvil.js import get_dom_node
-
-url_yandex = 'https://yandex.com.am/pogoda/?lat=58.55879211&lon=49.50606537'
-response = anvil.http.request(url_yandex, method="GET")
-print(response)
 
 # формируем запрос
 url = 'https://api.openweathermap.org/data/2.5/weather?q=Киров&units=metric&lang=ru&appid=79d1ca96933b0328e1c7e3e7a26cb347'
