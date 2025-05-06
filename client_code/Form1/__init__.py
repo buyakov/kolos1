@@ -11,7 +11,7 @@ from anvil.js.window import jQuery
 from anvil.js import get_dom_node
 
 # формируем запрос
-url = 'https://api.openweathermap.org/data/2.5/weather?q=Киров&units=metric&lang=ru&appid=79d1ca96933b0328e1c7e3e7a26cb347'
+url = 'https://api.openweathermap.org/data/2.5/weather?q=Киров&units=metric&lang=ru&appid=390c8911b10d0176aeceb068d00b6940'
 # отправляем запрос на сервер и сразу получаем результат
 #weather_data = requests.get(url).json()
 weather_data = anvil.http.request(url, json=True)
