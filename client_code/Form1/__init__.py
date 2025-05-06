@@ -19,10 +19,8 @@ weather_data = anvil.http.request(url, json=True)
 temperature = round(weather_data['main']['temp'])
 description = weather_data['weather'][0]['description']
 temperature_feels = round(weather_data['main']['feels_like'])
-# выводим значения на экран
-print('Сейчас в городе', str(temperature), '°C')
-print('Ощущается как', str(temperature_feels), '°C')
-print(description)
+code = weather_data['weather'][0]['icon']
+content = '{label}<img src="https://openweathermap.org/img/wn/' + code + '@2x.png" width="30" height="30"/>'
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -41,6 +39,8 @@ class Form1(Form1Template):
     self.t2 = 0
     self.yandex_click = 0
     self.google_click = 0
+    self.label_4.text = str(temperature) + ' °C'
+    self.rich_text_2.content = content
   
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""

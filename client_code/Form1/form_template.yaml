@@ -1,16 +1,42 @@
 components:
-- data_bindings: []
-  layout_properties: {grid_position: 'IFHSLS,VQDNDX'}
-  name: label_3
+- components:
+  - data_bindings: []
+    layout_properties: {col_xs: 0, row: RTCTAY, width_xs: 5}
+    name: label_3
+    properties:
+      bold: true
+      font_size: 18
+      spacing:
+        margin: ['5', '0', '0', '5']
+        padding: ['0', '0', '0', '0']
+      text: СНТ Колос-1
+      underline: false
+    type: Label
+  - components:
+    - layout_properties: {slot: label}
+      name: label_4
+      properties:
+        spacing:
+          padding: ['0', null, '0', null]
+      type: Label
+    layout_properties: {col_xs: 8, row: RTCTAY, width_xs: 4}
+    name: rich_text_2
+    properties:
+      align: right
+      content: '{label}<img src="https://openweathermap.org/img/wn/02d@2x.png" width="30" height="30"/>'
+      format: restricted_html
+      spacing:
+        margin: ['0', '0', '0', '0']
+        padding: ['0', '5', 0, '5']
+      spacing_above: small
+      spacing_below: small
+    type: RichText
+  layout_properties: {grid_position: 'FFRJCT,YKJLWW'}
+  name: grid_panel_2
   properties:
-    bold: true
-    font_size: 18
     spacing:
-      margin: [null, '20', null, '20']
-      padding: [null, '10', null, '10']
-    text: СНТ Колос-1
-    underline: false
-  type: Label
+      margin: [null, '20', '0', '20']
+  type: GridPanel
 - event_bindings: {change: drop_down_2_change}
   layout_properties: {grid_position: 'CEZQWM,SWEDAS'}
   name: drop_down_2
