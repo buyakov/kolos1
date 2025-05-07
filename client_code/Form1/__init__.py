@@ -6,7 +6,6 @@ from anvil.tables import app_tables
 import anvil.server
 import anvil.http
 
-
 from anvil.js.window import jQuery
 from anvil.js import get_dom_node
 
@@ -41,7 +40,7 @@ class Form1(Form1Template):
     self.google_click = 0
     self.label_4.text = str(temperature) + ' °C'
     self.rich_text_2.content = content
-  
+
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
 
@@ -59,7 +58,7 @@ class Form1(Form1Template):
         self.label_2.text = 'Участок № ' + str(num) + '\nСумма к оплате - ' + str(area_value*5) + ' ₽'
         # передаем изображение QR кода на страницу
         self.image_1.source = link
-        
+
       elif self.status == 'Электроэнергия':
         # расчитываем потребление электроэнергии
         consumption = self.t2 - self.t1
@@ -114,7 +113,7 @@ class Form1(Form1Template):
         self.label_2.text = 'Участок № ' + str(num) + '\n\nИнформация из Росреестра:\n' + 'Кадастровый номер - ' + str(cn) + ',\nКадастровая стоимость - ' "{:.2f}".format(cad_cost) + ' ₽\n' + 'Дата внесения сведений о кадастровой стоимости в ГКН - ' + str(cc_date_entering) + '\nАдрес - ' + str(address) + '\nТип использования - ' + str(util_by_doc) + '\nПлощадь - ' + str(area_value) + ' м²'
         #self.image_1.visible = False
         self.image_2.source = [r['plan'] for r in app_tables.table_2.search(number=num)][0]
-        
+
         #запрос на сервер для добавления данных в таблицу
         #anvil.server.call('add_row', cn, cad_cost, address, util_by_doc, cc_date_entering, area_value)
     else:
