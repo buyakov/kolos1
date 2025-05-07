@@ -3,7 +3,7 @@ from anvil import *
 # import anvil.tables as tables
 # import anvil.tables.query as q
 from anvil.tables import app_tables
-import anvil.server
+# import anvil.server
 import anvil.http
 
 from anvil.js.window import jQuery
@@ -96,7 +96,7 @@ class Form1(Form1Template):
         util_by_doc = [r['util_by_doc'] for r in app_tables.table_2.search(number=num)][0]
         cad_cost = [r['cad_cost'] for r in app_tables.table_2.search(number=num)][0]
         cc_date_entering = [r['cc_date_entering'] for r in app_tables.table_2.search(number=num)][0]
-        
+
         # собираем ссылку для запроса информации из Росреестра
         #linkapi = 'https://pkk.rosreestr.ru/api/features/1/43:40:32706:' + str(num)
         # делаем запрос на сайт Росреестра, работает через раз
