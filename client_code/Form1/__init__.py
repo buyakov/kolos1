@@ -56,13 +56,12 @@ class Form1(Form1Template):
         area_value = [r['area_value'] for r in app_tables.table_2.search(number=num)][0]
         # собираем ссылку для генерации QR кода
         link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЧЛ ВЗНОС, УЧАСТОК №' + str(num) + '|Sum=' + str(area_value*500) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
-        # передаем информацию о платеже на страницу
-        self.label_2.text = 'Участок № ' + str(num) + '\nСумма к оплате - ' + str(area_value*5) + ' ₽'
-        # передаем изображение QR кода на страницу
-        self.image_1.source = link
         # увеличиваем счетчик
         response = anvil.http.request(f"{api_url}/up", json=True)
-        print(response['count'])
+        # передаем информацию о платеже на страницу
+        self.label_2.text = 'QR код - ' + str(response['count']) + '\nУчасток № ' + str(num) + '\nСумма к оплате - ' + str(area_value*5) + ' ₽'
+        # передаем изображение QR кода на страницу
+        self.image_1.source = link
 
       elif self.status == 'Электроэнергия':
         # расчитываем потребление электроэнергии
@@ -70,13 +69,13 @@ class Form1(Form1Template):
         if (self.text_box_1.text is not None) and (self.text_box_2.text is not None) and (consumption >= 0):
           # собираем ссылку для генерации QR кода
           link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЭЛЕКТРОЭНЕРГИЯ, УЧАСТОК №' + str(num) + ', Т1=' + str(self.t1) + ', Т2=' + str(self.t2) + '|Sum=' + str(consumption*4.5*100) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
-          # передаем информацию о платеже на страницу
-          self.label_2.text = 'Участок № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*4.5) + ' ₽'
-          # передаем изображение QR кода на страницу
-          self.image_1.source = link
           # увеличиваем счетчик
           response = anvil.http.request(f"{api_url}/up", json=True)
-          print(response['count'])
+          # передаем информацию о платеже на страницу
+          self.label_2.text = 'QR код - ' + str(response['count']) + '\nУчасток № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*4.5) + ' ₽'
+          # передаем изображение QR кода на страницу
+          self.image_1.source = link
+         
         else:
           self.label_2.text = 'Корректно введите показания'
           self.drop_down_1.selected_value = None
@@ -88,13 +87,13 @@ class Form1(Form1Template):
         if self.text_box_3.text is not None:
           # собираем ссылку для генерации QR кода
           link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ПРОШЛЫЕ ПЕРИОДЫ, УЧАСТОК №' + str(num) + '|Sum=' + str(self.payment*100) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
-          # передаем информацию о платеже на страницу
-          self.label_2.text = 'Участок № ' + str(num) + '\nСумма к оплате - ' + str(self.payment) + ' ₽'
-          # передаем изображение QR кода на страницу
-          self.image_1.source = link
           # увеличиваем счетчик
           response = anvil.http.request(f"{api_url}/up", json=True)
-          print(response['count'])
+          # передаем информацию о платеже на страницу
+          self.label_2.text = 'QR код - ' + str(response['count']) + '\nУчасток № ' + str(num) + '\nСумма к оплате - ' + str(self.payment) + ' ₽'
+          # передаем изображение QR кода на страницу
+          self.image_1.source = link
+
         else:
           self.label_2.text = 'Введите сумму'
           self.drop_down_1.selected_value = None
