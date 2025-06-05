@@ -62,7 +62,7 @@ class Form1(Form1Template):
         self.image_1.source = link
         # увеличиваем счетчик
         response = anvil.http.request(f"{api_url}/up", json=True)
-        self.label_5.text = 'С 01 мая 2025 сгенерировано - ' + str(response['count']) + ' кодов на оплату'
+        print(response['count'])
 
       elif self.status == 'Электроэнергия':
         # расчитываем потребление электроэнергии
@@ -74,14 +74,16 @@ class Form1(Form1Template):
           self.label_2.text = 'Участок № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*4.5) + ' ₽'
           # передаем изображение QR кода на страницу
           self.image_1.source = link
+          # увеличиваем счетчик
           response = anvil.http.request(f"{api_url}/up", json=True)
-          self.count = response['count']
+          print(response['count'])
         else:
           self.label_2.text = 'Корректно введите показания'
           self.drop_down_1.selected_value = None
           self.text_box_1.text = None
           self.text_box_2.text = None
           self.image_1.source = None
+
       elif self.status == 'Прошлые периоды':
         if self.text_box_3.text is not None:
           # собираем ссылку для генерации QR кода
@@ -90,8 +92,9 @@ class Form1(Form1Template):
           self.label_2.text = 'Участок № ' + str(num) + '\nСумма к оплате - ' + str(self.payment) + ' ₽'
           # передаем изображение QR кода на страницу
           self.image_1.source = link
+          # увеличиваем счетчик
           response = anvil.http.request(f"{api_url}/up", json=True)
-          self.count = response['count']
+          print(response['count'])
         else:
           self.label_2.text = 'Введите сумму'
           self.drop_down_1.selected_value = None
