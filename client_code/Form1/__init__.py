@@ -58,9 +58,9 @@ class Form1(Form1Template):
         link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЧЛ ВЗНОС, УЧАСТОК №' + str(num) + '|Sum=' + str(area_value*500) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
         # увеличиваем счетчик
         response = anvil.http.request(f"{api_url}/up", json=True)
-        self.count = response['count']
+        self.label_5.text = 'С 01 мая 2025 сгенерировано - ' + str(response['count']) + ' кодов на оплату'
         # передаем информацию о платеже на страницу
-        self.label_2.text = 'Участок № ' + str(num) + '\nСумма к оплате - ' + str(area_value*5) + ' ₽' + '\nСчетчик - ' + str(self.count)
+        self.label_2.text = 'Участок № ' + str(num) + '\nСумма к оплате - ' + str(area_value*5) + ' ₽'
         # передаем изображение QR кода на страницу
         self.image_1.source = link
 
