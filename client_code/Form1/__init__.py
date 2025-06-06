@@ -238,6 +238,9 @@ class Form1(Form1Template):
       self.image_3.source = link
     #устанавливаем видимость полей для статуса Общая информация
     if self.status == 'Общая информация':
+      api_url = "https://api.counterapi.dev/v1/wilted-brisk-improvement.anvil.app/my_counter/"
+      response = anvil.http.request(api_url, json=True)
+      self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
       self.text_box_1.visible = False
       self.text_box_2.visible = False
       self.text_box_3.visible = False
