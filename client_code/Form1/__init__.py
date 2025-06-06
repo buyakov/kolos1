@@ -59,7 +59,9 @@ class Form1(Form1Template):
         # увеличиваем счетчик
         response = anvil.http.request(f"{api_url}/up", json=True)
         # передаем информацию о платеже на страницу
-        self.label_2.text = 'QR код - ' + str(response['count']) + '\nУчасток № ' + str(num) + '\nСумма к оплате - ' + str(area_value*5) + ' ₽'
+        self.label_2.text = 'Участок № ' + str(num) + '\nСумма к оплате - ' + str(area_value*5) + ' ₽'
+        # обновляем данные о сгенерированных кодах в разделе Общая информация
+        self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
         # передаем изображение QR кода на страницу
         self.image_1.source = link
 
@@ -72,7 +74,9 @@ class Form1(Form1Template):
           # увеличиваем счетчик
           response = anvil.http.request(f"{api_url}/up", json=True)
           # передаем информацию о платеже на страницу
-          self.label_2.text = 'QR код - ' + str(response['count']) + '\nУчасток № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*4.5) + ' ₽'
+          self.label_2.text = 'Участок № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*4.5) + ' ₽'
+          # обновляем данные о сгенерированных кодах в разделе Общая информация
+          self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
           # передаем изображение QR кода на страницу
           self.image_1.source = link
          
@@ -90,7 +94,9 @@ class Form1(Form1Template):
           # увеличиваем счетчик
           response = anvil.http.request(f"{api_url}/up", json=True)
           # передаем информацию о платеже на страницу
-          self.label_2.text = 'QR код - ' + str(response['count']) + '\nУчасток № ' + str(num) + '\nСумма к оплате - ' + str(self.payment) + ' ₽'
+          self.label_2.text = 'Участок № ' + str(num) + '\nСумма к оплате - ' + str(self.payment) + ' ₽'
+          # обновляем данные о сгенерированных кодах в разделе Общая информация
+          self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
           # передаем изображение QR кода на страницу
           self.image_1.source = link
 
@@ -238,9 +244,6 @@ class Form1(Form1Template):
       self.image_3.source = link
     #устанавливаем видимость полей для статуса Общая информация
     if self.status == 'Общая информация':
-      api_url = "https://api.counterapi.dev/v1/wilted-brisk-improvement.anvil.app/my_counter/"
-      response = anvil.http.request(api_url, json=True)
-      self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
       self.text_box_1.visible = False
       self.text_box_2.visible = False
       self.text_box_3.visible = False
