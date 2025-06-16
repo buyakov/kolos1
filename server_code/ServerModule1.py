@@ -3,7 +3,7 @@
 #from anvil.tables import app_tables
 #import anvil.server
 #import segno
-#import requests
+import requests
 #from bs import BeautifulSoup
 
 # This is a server module. It runs on the Anvil server,
