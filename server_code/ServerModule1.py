@@ -1,7 +1,7 @@
 #import anvil.tables as tables
 #import anvil.tables.query as q
 #from anvil.tables import app_tables
-#import anvil.server
+import anvil.server
 #import segno
 import requests
 #from bs import BeautifulSoup
@@ -19,9 +19,8 @@ import requests
 #  img = qrcode.to_pil(scale=4,border=0)
 #  return img
 
-#@anvil.server.callable
-#def weather():
-#  url_yandex = 'https://yandex.com.am/pogoda?lat=58.55879211&lon=49.50606537'
-#  response = requests.get(url_yandex).json()
-#  bs = BeautifulSoup(response.text,"lxml")
-#  print(bs)
+@anvil.server.callable
+def qr_request(api_url):
+  
+  response = requests.get(api_url).json()
+  print(bs)
