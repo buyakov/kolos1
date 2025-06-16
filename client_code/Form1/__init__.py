@@ -44,9 +44,9 @@ class Form1(Form1Template):
     self.api_url = "https://api.counterapi.dev/v1/wilted-brisk-improvement.anvil.app/my_counter/"
     
     # увеличиваем счетчик
-    response = anvil.http.request(self.api_url, json=True)
+    #response = anvil.http.request(self.api_url, json=True)
     # обновляем данные о сгенерированных кодах в разделе Общая информация
-    self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
+    #self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
 
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
