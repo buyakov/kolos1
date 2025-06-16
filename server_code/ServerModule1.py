@@ -1,9 +1,9 @@
 #import anvil.tables as tables
 #import anvil.tables.query as q
 #from anvil.tables import app_tables
-import anvil.server
+#import anvil.server
 #import segno
-import requests
+#import requests
 #from bs import BeautifulSoup
 
 # This is a server module. It runs on the Anvil server,
@@ -19,8 +19,8 @@ import requests
 #  img = qrcode.to_pil(scale=4,border=0)
 #  return img
 
-@anvil.server.callable
-def qr_request(api_url):
+#@anvil.server.callable
+#def qr_request(api_url):
   
-  response = requests.get(api_url).json()
-  print(bs)
+#  response = requests.get(api_url).json()
+#  print(bs)

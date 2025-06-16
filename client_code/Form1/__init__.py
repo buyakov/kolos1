@@ -265,6 +265,7 @@ class Form1(Form1Template):
       self.grid_panel_1.visible = False
       self.linear_panel_1.visible = False
       self.linear_panel_2.visible = False
+      self.label_5.visible = False
     pass
 
   #запись переменной t1 из поля Предыдущие показания
