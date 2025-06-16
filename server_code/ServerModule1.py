@@ -19,7 +19,7 @@ import requests
 #  img = qrcode.to_pil(scale=4,border=0)
 #  return img
 
-@anvil.server.callable
+#@anvil.server.callable
 def qr_request(api_url):
   
   response = requests.get(api_url).json()
