@@ -41,7 +41,7 @@ class Form1(Form1Template):
     self.label_4.text = str(temperature) + ' °C'
     self.rich_text_2.content = content
 
-    self.api_url = "https://api.counterapi.dev/v1/wilted-brisk-improvement.anvil.app/my_counter/"
+    #self.api_url = "https://api.counterapi.dev/v1/wilted-brisk-improvement.anvil.app/my_counter/"
     
     # увеличиваем счетчик
     #response = anvil.http.request(self.api_url, json=True)
