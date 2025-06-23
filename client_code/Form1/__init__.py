@@ -41,6 +41,12 @@ class Form1(Form1Template):
     self.label_4.text = str(temperature) + ' °C'
     self.rich_text_2.content = content
 
+    self.repeating_panel_1.items = [
+      {'Имя': 'Анна', 'Возраст': 25, 'Город': 'Москва'},
+      {'Имя': 'Иван', 'Возраст': 30, 'Город': 'Санкт-Петербург'},
+      {'Имя': 'Мария', 'Возраст': 28, 'Город': 'Казань'}
+    ]
+
     #self.api_url = "https://api.counterapi.dev/v1/wilted-brisk-improvement.anvil.app/my_counter/"
     
     # увеличиваем счетчик
