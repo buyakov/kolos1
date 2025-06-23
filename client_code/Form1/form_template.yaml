@@ -254,21 +254,6 @@ components:
     height: 103.66665649414062
     margin: [null, '20', null, '20']
   type: Image
-- components:
-  - name: repeating_panel_1
-    properties: {item_template: Form1.RowTemplate3}
-    type: RepeatingPanel
-  layout_properties: {full_width_row: false, grid_position: 'FFNYKZ,HIBQGE'}
-  name: data_grid_1
-  properties:
-    auto_header: true
-    columns:
-    - {data_key: column_1, id: JKSDUP, title: Column 1}
-    - {data_key: column_2, id: VJQQOR, title: Column 2}
-    - {data_key: column_3, id: OJLQEN, title: Column 3}
-    show_page_controls: false
-    visible: true
-  type: DataGrid
 container:
   properties: {wrap_on: mobile}
   type: ColumnPanel
