@@ -1,26 +1,24 @@
-#import anvil.tables as tables
-#import anvil.tables.query as q
-#from anvil.tables import app_tables
-#import anvil.server
-#import segno
-#import requests
-#from bs import BeautifulSoup
+import anvil.server
+import qrcode
+from io import BytesIO
 
-# This is a server module. It runs on the Anvil server,
-# rather than in the user's browser.
-#
-# To allow anvil.server.call() to call functions here, we mark
-# them with @anvil.server.callable.
-# Here is an example - you can replace it with your own:
+@anvil.server.callable
+def generate_qr_code(text):
+  """Генерация QR-кода из текста."""
+  qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_M,  # Средний уровень коррекции
+    box_size=4,  # Уменьшенный размер для лучшей читаемости
+    border=2,
+  )
+  qr.add_data(text)
+  qr.make(fit=True)
 
-#@anvil.server.callable
-#def qr_gen(data):
-#  qrcode = segno.make(data,mode="byte",error='L')
-#  img = qrcode.to_pil(scale=4,border=0)
-#  return img
+  img = qr.make_image(fill_color="black", back_color="white")
 
-#@anvil.server.callable
-#def qr_request(api_url):
-  
-#  response = requests.get(api_url).json()
-#  print(bs)
+  bio = BytesIO()
+  bio.name = 'qr_code.png'
+  img.save(bio, 'PNG')
+  bio.seek(0)
+
+  return bio.getvalue()

@@ -1,5 +1,6 @@
 from ._anvil_designer import Form1Template
 from anvil import *
+import anvil.media
 # import anvil.tables as tables
 # import anvil.tables.query as q
 from anvil.tables import app_tables
@@ -75,7 +76,23 @@ class Form1(Form1Template):
       elif self.status == 'Электроэнергия':
         # расчитываем потребление электроэнергии
         consumption = self.t2 - self.t1
+        amount = consumption * 4.5  # 4.5 руб за кВт
         if (self.text_box_1.text is not None) and (self.text_box_2.text is not None) and (consumption >= 0):
+          # собираем текст для генерации QR кода
+          payment_text = (
+            "ST00012|"  # Версия стандарта
+            "Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО \"КОЛОС-1\"|"
+            "PersonalAcc=40703810400130000655|"
+            "BankName=АО КБ \"ХЛЫНОВ\", Г.КИРОВ|"
+            "BIC=043304711|"
+            "CorrespAcc=30101810100000000711|"
+            "PayeeINN=4346026874|"
+            "KPP=434501001|"
+            f"Purpose=ЭЛЕКТРОЭНЕРГИЯ, УЧАСТОК №{num}, Т1={self.t1}, Т2={self.t2}|"
+            f"Sum={amount*100}"
+          )
+          qr_bytes = anvil.server.call('generate_qr_code', payment_text)
+          qr_img = anvil.BlobMedia("image/png", qr_bytes)
           # собираем ссылку для генерации QR кода
           link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЭЛЕКТРОЭНЕРГИЯ, УЧАСТОК №' + str(num) + ', Т1=' + str(self.t1) + ', Т2=' + str(self.t2) + '|Sum=' + str(consumption*4.5*100) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
           # увеличиваем счетчик
@@ -86,6 +103,7 @@ class Form1(Form1Template):
           self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
           # передаем изображение QR кода на страницу
           self.image_1.source = link
+          self.image_1.source = qr_img
          
         else:
           self.label_2.text = 'Корректно введите показания'
