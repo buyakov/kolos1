@@ -1,24 +1,25 @@
 import anvil.server
+import anvil.media
 import qrcode
 from io import BytesIO
 
 @anvil.server.callable
 def generate_qr_code(text):
-  """Генерация QR-кода из текста."""
+  """Генерация QR-кода из текста и возврат в виде байтов."""
   qr = qrcode.QRCode(
     version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_M,  # Средний уровень коррекции
-    box_size=4,  # Уменьшенный размер для лучшей читаемости
+    error_correction=qrcode.constants.ERROR_CORRECT_M,
+    box_size=4,
     border=2,
   )
   qr.add_data(text)
   qr.make(fit=True)
 
-  img = qr.make_image(fill_color="black", back_color="white")
+  img = qr.make_image()
 
   bio = BytesIO()
-  bio.name = 'qr_code.png'
-  img.save(bio, 'PNG')
+  img.save(bio, format="PNG")  # Явно указываем формат
   bio.seek(0)
-
-  return bio.getvalue()
+  
+  # Возвращаем BlobMedia, который Anvil умеет передавать
+  return anvil.BlobMedia("image/png", bio.getvalue())

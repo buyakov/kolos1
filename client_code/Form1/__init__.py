@@ -91,16 +91,15 @@ class Form1(Form1Template):
             f"Purpose=ЭЛЕКТРОЭНЕРГИЯ, УЧАСТОК №{num}, Т1={self.t1}, Т2={self.t2}|"
             f"Sum={amount*100}"
           )
-          qr_bytes = anvil.server.call('generate_qr_code', payment_text)
-          qr_img = anvil.BlobMedia("image/png", qr_bytes)
+          qr_img = anvil.server.call('generate_qr_code', payment_text)
           # собираем ссылку для генерации QR кода
           link = anvil.http.url_decode('https://www.bcgen.com/demo/IDAutomationStreamingQRCode.aspx?ECL=L&D=ST00012|Name=НЕКОММЕРЧЕСКОЕ САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО ""КОЛОС-1""|PersonalAcc=40703810400130000655|BankName=АО КБ ""ХЛЫНОВ"", Г.КИРОВ|BIC=043304711|CorrespAcc=30101810100000000711|PayeeINN=4346026874|KPP=434501001|Purpose=ЭЛЕКТРОЭНЕРГИЯ, УЧАСТОК №' + str(num) + ', Т1=' + str(self.t1) + ', Т2=' + str(self.t2) + '|Sum=' + str(consumption*4.5*100) + '&MODE=B&PT=T&X=0.1&O=0&LM=0.2&V=0')
           # увеличиваем счетчик
-          response = anvil.http.request(f"{self.api_url}up", json=True)
+          #response = anvil.http.request(f"{self.api_url}up", json=True)
           # передаем информацию о платеже на страницу
           self.label_2.text = 'Участок № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*4.5) + ' ₽'
           # обновляем данные о сгенерированных кодах в разделе Общая информация
-          self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
+          #self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
           # передаем изображение QR кода на страницу
           self.image_1.source = link
           self.image_1.source = qr_img
