@@ -4,6 +4,11 @@ import qrcode
 from io import BytesIO
 
 @anvil.server.callable
+def test():
+  s = 'Проверка связи от анвил'
+  return s
+
+@anvil.server.callable
 def generate_qr_code(text):
   """Генерация QR-кода из текста и возврат в виде байтов."""
   qr = qrcode.QRCode(
