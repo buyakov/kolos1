@@ -13,7 +13,7 @@ def generate_qr_code(text):
   """Генерация QR-кода из текста и возврат в виде байтов."""
   qr = qrcode.QRCode(
     version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_M,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
     box_size=4,
     border=2,
   )
