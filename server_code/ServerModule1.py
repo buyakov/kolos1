@@ -4,9 +4,17 @@ import anvil.media
 import requests
 import qrcode
 from io import BytesIO
+import time
+from datetime import datetime, timedelta
 
-@anvil.server.background_task
-def weather():
+# Глобальные переменные для хранения данных
+_weather_cache = {
+  'temperature': None,
+  'content': None,
+  'last_updated': None
+}
+
+def _update_weather():
   # формируем запрос
   url = 'https://api.openweathermap.org/data/2.5/weather?q=Киров&units=metric&lang=ru&appid=390c8911b10d0176aeceb068d00b6940'
   # отправляем запрос на сервер и сразу получаем результат
@@ -15,15 +23,39 @@ def weather():
   temperature = round(weather_data['main']['temp'])
   #description = weather_data['weather'][0]['description']
   #temperature_feels = round(weather_data['main']['feels_like'])
-  #code = weather_data['weather'][0]['icon']
-  #content = '{label}<img src="https://openweathermap.org/img/wn/' + code + '@2x.png" width="30" height="30"/>'
-  print(temperature)
-  return temperature
+  code = weather_data['weather'][0]['icon']
+  content = '{label}<img src="https://openweathermap.org/img/wn/' + code + '@2x.png" width="30" height="30"/>'
+    
+  _weather_cache.update({
+    'temperature': temperature,
+    'content': content,
+    'last_updated': datetime.now()
+  }) 
   
+@anvil.server.background_task
+def weather_updater():
+  while True:
+    _update_weather()
+    time.sleep(600)
+
+# Функция для клиента (возвращает текущие данные)
 @anvil.server.callable
-def weather_call():
-  task = anvil.server.launch_background_task('weather')
-  return task.get_id()
+def get_weather():
+  print(_weather_cache['last_updated'])
+  # Если данные устарели (>10 минут), обновляем перед возвратом
+  if (
+    _weather_cache['last_updated'] is None or 
+    (datetime.now() - _weather_cache['last_updated']) > timedelta(minutes=10)
+  ):
+    _update_weather()
+    print(datetime.now() - _weather_cache['last_updated'])
+    print(timedelta(minutes=10))
+
+  return {
+    'temperature': _weather_cache['temperature'],
+    'content': _weather_cache['content'],
+    'last_update': _weather_cache['last_updated']
+  }
 
 @anvil.server.callable
 def generate_qr_code(text):
