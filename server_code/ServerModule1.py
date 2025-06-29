@@ -1,7 +1,7 @@
 import anvil.server
 #import anvil.htpp
 import anvil.media
-import requestes
+import requests
 import qrcode
 from io import BytesIO
 
@@ -10,8 +10,7 @@ def weather():
   # формируем запрос
   url = 'https://api.openweathermap.org/data/2.5/weather?q=Киров&units=metric&lang=ru&appid=390c8911b10d0176aeceb068d00b6940'
   # отправляем запрос на сервер и сразу получаем результат
-  #weather_data = requests.get(url).json()
-  weather_data = anvil.requests(url, json=True)
+  weather_data = requests.get(url).json()
   # получаем данные о температуре и о том, как она ощущается
   temperature = round(weather_data['main']['temp'])
   #description = weather_data['weather'][0]['description']
@@ -24,7 +23,7 @@ def weather():
 @anvil.server.callable
 def weather_call():
   task = anvil.server.launch_background_task('weather')
-  return task
+  return task.get_id()
 
 @anvil.server.callable
 def generate_qr_code(text):
