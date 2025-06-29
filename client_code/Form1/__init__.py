@@ -25,6 +25,7 @@ content = '{label}<img src="https://openweathermap.org/img/wn/' + code + '@2x.pn
 class Form1(Form1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
+    self.label_1.text = anvil.server.call('weather_call')
     self.init_components(**properties)
     self.text_box_1.visible = False
     self.text_box_2.visible = False

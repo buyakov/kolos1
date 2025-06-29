@@ -3,10 +3,25 @@ import anvil.media
 import qrcode
 from io import BytesIO
 
+@anvil.server.background_task
+def weather():
+  # формируем запрос
+  url = 'https://api.openweathermap.org/data/2.5/weather?q=Киров&units=metric&lang=ru&appid=390c8911b10d0176aeceb068d00b6940'
+  # отправляем запрос на сервер и сразу получаем результат
+  #weather_data = requests.get(url).json()
+  weather_data = anvil.http.request(url, json=True)
+  # получаем данные о температуре и о том, как она ощущается
+  temperature = round(weather_data['main']['temp'])
+  description = weather_data['weather'][0]['description']
+  temperature_feels = round(weather_data['main']['feels_like'])
+  code = weather_data['weather'][0]['icon']
+  content = '{label}<img src="https://openweathermap.org/img/wn/' + code + '@2x.png" width="30" height="30"/>'
+  return content
+  
 @anvil.server.callable
-def test():
-  s = 'Проверка связи от анвил'
-  return s
+def weather_call():
+  content = anvil.server.launch_background_task('weather')
+  return content
 
 @anvil.server.callable
 def generate_qr_code(text):
@@ -25,6 +40,6 @@ def generate_qr_code(text):
   bio = BytesIO()
   img.save(bio, format="PNG")  # Явно указываем формат
   bio.seek(0)
-  
+
   # Возвращаем BlobMedia, который Anvil умеет передавать
   return anvil.BlobMedia("image/png", bio.getvalue())
