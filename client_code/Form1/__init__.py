@@ -35,6 +35,8 @@ class Form1(Form1Template):
     self.rich_text_1.visible= False
     self.linear_panel_1.visible = False
     self.linear_panel_2.visible = False
+    self.linear_panel_3.visible = False
+    self.linear_panel_4.visible = False
     self.grid_panel_1.visible = False
     self.status = 'Членский взнос'
     self.t1 = 0
@@ -200,6 +202,8 @@ class Form1(Form1Template):
       self.grid_panel_1.visible = False
       self.linear_panel_1.visible = False
       self.linear_panel_2.visible = False
+      self.linear_panel_3.visible = False
+      self.linear_panel_4.visible = False
     #устанавливаем видимость полей для статуса Электроэнергия
     if self.status == 'Электроэнергия':
       self.text_box_1.visible = True
@@ -216,6 +220,8 @@ class Form1(Form1Template):
       self.grid_panel_1.visible = False
       self.linear_panel_1.visible = False
       self.linear_panel_2.visible = False
+      self.linear_panel_3.visible = False
+      self.linear_panel_4.visible = False
     #устанавливаем видимость полей для статуса Прошлые периоды
     if self.status == 'Прошлые периоды':
       self.text_box_1.visible = False
@@ -232,6 +238,8 @@ class Form1(Form1Template):
       self.grid_panel_1.visible = False
       self.linear_panel_1.visible = False
       self.linear_panel_2.visible = False
+      self.linear_panel_3.visible = False
+      self.linear_panel_4.visible = False
     #устанавливаем видимость полей для статуса Информация об участке
     if self.status == 'Информация об участке':
       self.text_box_1.visible = False
@@ -248,6 +256,8 @@ class Form1(Form1Template):
       self.grid_panel_1.visible = False
       self.linear_panel_1.visible = False
       self.linear_panel_2.visible = False
+      self.linear_panel_3.visible = False
+      self.linear_panel_4.visible = False
     #устанавливаем видимость полей для статуса Схема участков
     if self.status == 'Схема участков':
       self.text_box_1.visible = False
@@ -263,6 +273,8 @@ class Form1(Form1Template):
       self.rich_text_1.visible= False
       self.linear_panel_1.visible = False
       self.linear_panel_2.visible = False
+      self.linear_panel_3.visible = False
+      self.linear_panel_4.visible = False
       self.grid_panel_1.visible = True
       # сохраняем в перменную изображение по ссылке
       link = 'https://i.postimg.cc/5bs26tpJ/Kolos-img.png'
@@ -284,6 +296,8 @@ class Form1(Form1Template):
       self.grid_panel_1.visible = False
       self.linear_panel_1.visible = False
       self.linear_panel_2.visible = False
+      self.linear_panel_3.visible = False
+      self.linear_panel_4.visible = False
       self.label_5.visible = False
     pass
 
@@ -326,6 +340,8 @@ class Form1(Form1Template):
     self.image_3.visible = False
     self.linear_panel_1.visible = True
     self.linear_panel_2.visible = False
+    self.linear_panel_3.visible = False
+    self.linear_panel_4.visible = False
     self.yandex_click += 1
     if self.yandex_click < 2:
       # Создаем элемент iframe
@@ -339,6 +355,8 @@ class Form1(Form1Template):
     self.image_3.visible = False
     self.linear_panel_1.visible = False
     self.linear_panel_2.visible = True
+    self.linear_panel_3.visible = False
+    self.linear_panel_4.visible = False
     self.google_click += 1
     if self.google_click < 2:
       # Создаем элемент iframe
@@ -352,4 +370,6 @@ class Form1(Form1Template):
     self.image_3.visible = True
     self.linear_panel_1.visible = False
     self.linear_panel_2.visible = False
+    self.linear_panel_3.visible = False
+    self.linear_panel_4.visible = False
     pass

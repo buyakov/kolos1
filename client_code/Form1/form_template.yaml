@@ -253,6 +253,12 @@ components:
     spacing:
       margin: [null, '20', null, '20']
   type: LinearPanel
+- layout_properties: {grid_position: 'UNWEWM,FGFZKP'}
+  name: linear_panel_4
+  properties:
+    spacing:
+      margin: [null, '20', null, '20']
+  type: LinearPanel
 - layout_properties: {grid_position: 'LLMRPZ,NFTBGW'}
   name: image_3
   properties:
