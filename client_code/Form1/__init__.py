@@ -80,7 +80,7 @@ class Form1(Form1Template):
       elif self.status == 'Электроэнергия':
         # расчитываем потребление электроэнергии
         consumption = self.t2 - self.t1
-        amount = consumption * 4.5  # 4.5 руб за кВт
+        amount = consumption * 5.05  # 5.05 руб за кВт
         if (self.text_box_1.text is not None) and (self.text_box_2.text is not None) and (consumption >= 0):
           # собираем текст для генерации QR кода
           payment_text = (
