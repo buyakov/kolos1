@@ -101,7 +101,7 @@ class Form1(Form1Template):
           # увеличиваем счетчик
           #response = anvil.http.request(f"{self.api_url}up", json=True)
           # передаем информацию о платеже на страницу
-          self.label_2.text = 'Участок № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*4.5) + ' ₽'
+          self.label_2.text = 'Участок № ' + str(num) + '\nПотребление, кВт - ' + str(consumption) + '\nСумма к оплате - ' + str(consumption*5.05) + ' ₽'
           # обновляем данные о сгенерированных кодах в разделе Общая информация
           #self.label_5.text = 'Количество сгенерированных QR кодов - ' + str(response['count'])
           # передаем изображение QR кода на страницу
